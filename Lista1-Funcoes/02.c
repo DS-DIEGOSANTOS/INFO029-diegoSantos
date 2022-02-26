@@ -1,10 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-float subtrai(float a , float b, float c){
-    float resultado = a - b - c;
-    return resultado;
-}
+float subtrai(float a , float b, float c);
 
 int main(){
     float a,b,c, resultado;
@@ -20,5 +17,10 @@ int main(){
 
     printf("resultado da soma: %.1f", resultado);
 
-    return 0;
+    return 0;  
+}
+
+float subtrai(float a , float b, float c){
+    float resultado = a - b - c;
+    return resultado;
 }

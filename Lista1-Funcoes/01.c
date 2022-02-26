@@ -1,10 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-float soma(float a , float b){
-    float soma = a + b;
-    return soma;
-}
+float soma(float a , float b);
 
 int main(){
     float a,b, resultado;
@@ -19,4 +16,9 @@ int main(){
     printf("resultado da soma: %.1f", resultado);
 
     return 0;
+}
+
+float soma(float a , float b){
+    float soma = a + b;
+    return soma;
 }
