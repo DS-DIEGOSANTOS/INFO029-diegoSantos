@@ -11,8 +11,8 @@ int main(){
 
     resultado = fatorial(valor);
 
-    if(resultado == -1){
-        printf("não existe fatorial do numero %d", valor);
+    if(!resultado){
+        printf("nao existe fatorial do numero %d", valor);
     }else{
         printf("fatorial de %d e %d ", valor, resultado);
     }
@@ -23,7 +23,7 @@ int main(){
 int fatorial(int valor){
 
     if(valor < 0){
-        return -1;
+        return 0;
     }else if(valor==0 || valor == 1){
         return 1;
     }else{

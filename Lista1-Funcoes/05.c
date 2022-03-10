@@ -6,8 +6,7 @@ typedef struct valor{
     float numero;
 }Valor;
 
-
-float * lernumero();
+Valor * lernumero();
 
 int main(){
 
@@ -20,7 +19,7 @@ int main(){
     return 0;
 }
 
-float * lernumero(){
+Valor * lernumero(){
 
     Valor* numero= (Valor*) calloc (TAM, sizeof (Valor));
 

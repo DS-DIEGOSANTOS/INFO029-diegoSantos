@@ -10,7 +10,7 @@ int main(){
     char **palavras = lerLetras();
 
     for (int i = 0; i < TAM; i++){
-       printf("posicao %d resultado %s\n", i+1 , palavras[i]);
+       printf("posicao %d resultado: %s\n", i+1 , palavras[i]);
     }
     
     return 0;

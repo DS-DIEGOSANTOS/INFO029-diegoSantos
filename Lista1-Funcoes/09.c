@@ -28,13 +28,13 @@ int main(){
 
     Pessoa pessoa = cadastroCliente();
 
-        if(validarNome(pessoa) == -1){
+        if(!validarNome(pessoa)){
             printf("o nome precisa ter ate 20 caracter");
-        }else if(validarSexo(pessoa) == -1){
+        }else if(!validarSexo(pessoa)){
             printf("digite um sexo Valido");
-        }else if(validarCPF(pessoa) == -1){
+        }else if(!validarCPF(pessoa)){
             printf("Digite um cpf valido");
-        }else if(validarNascimento(pessoa)==-1){
+        }else if(!validarNascimento(pessoa)){
             printf("Digite uma data de nascimento valida");
         }else{
             
@@ -93,10 +93,10 @@ Pessoa cadastroCliente(){
 
 int validarNome(Pessoa pessoa){
 
-    size_t ln = strlen(pessoa.nome) - 1;
+    size_t ln = strlen(pessoa.nome);
 
     if(ln > 20 ){
-        return -1;
+        return 0;
     }else{
         return 1;
     }
@@ -107,35 +107,42 @@ int validarSexo(Pessoa pessoa){
         pessoa.sexo == 'f' || pessoa.sexo == 'F'){
             return 1;
     }else{
-        return -1;
+        return 0;
 
     }
 }
 
 int validarCPF(Pessoa pessoa){
     
-    size_t ln = strlen(pessoa.cpf)-1;
-
-    if(ln==13){
-        return 1;
+    if(strlen(pessoa.cpf) == 14){
+ 
+        for(int i = 0; i < strlen(pessoa.cpf) ; i++){
+            
+            if(i != 3 && i!=7 && i!=11 ){
+                if(!isdigit(pessoa.cpf[i])) return 0;
+            }else if(i == 3 || i==7){
+                    if(!(pessoa.cpf[i] == '.'))return 0;
+            }else if(i == 11){
+                if(!(pessoa.cpf[i] == '-')) return 0;
+            }
+        }
+        return 1;        
     }else{
-        return -1;
-    }
+       return 0; 
+    } 
 }
 
 int validarNascimento(Pessoa pessoa){
 
 
     if(pessoa.nascimento.ano < 0){
-        return -1;
+        return 0;
     }else if(pessoa.nascimento.mes< 0 || pessoa.nascimento.mes>12){
-        return -1;
+        return 0;
     }else if(pessoa.nascimento.dia<0 || pessoa.nascimento.dia>31){
-        return -1;
+        return 0;
     }else{
         return 1;
     }
 
 }
-
-
