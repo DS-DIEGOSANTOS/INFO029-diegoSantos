@@ -19,6 +19,5 @@ int main(){
 }
 
 float soma(float a , float b){
-    float soma = a + b;
-    return soma;
+    return a+b;
 }
