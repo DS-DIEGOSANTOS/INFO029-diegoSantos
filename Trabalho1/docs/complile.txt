@@ -1,0 +1,5 @@
+cd Trabalho1
+
+gcc -o main main.c view/*.c controller/*.c
+
+./main
