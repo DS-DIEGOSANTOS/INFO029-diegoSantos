@@ -203,8 +203,12 @@ int q5(int num){
 
 int q6(int numerobase, int numerobusca){
 
-    int restoDaDivisao, qtdDeOcorrencia = 0;
-    int aux = pow(10,qtdDeDigitos(numerobusca));
+    int restoDaDivisao,aux =1, qtdDeOcorrencia = 0;
+    int digito = qtdDeDigitos(numerobusca);
+    
+    for(int i = 1; i <= digito ; i++){
+        aux*=10;
+    }
     
     numerobase = q5(numerobase);
     numerobusca = q5(numerobusca);
