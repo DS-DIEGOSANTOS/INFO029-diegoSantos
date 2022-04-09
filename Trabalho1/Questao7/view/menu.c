@@ -68,7 +68,7 @@ void startMenu(){
         logo();
         printf("1 - inicia jogo\n");
         printf("2 - Sair\n");
-        printf("Digite uma opçao: ");
+        printf("Digite uma opcao: ");
         scanf("%d", & option);
         getchar();
 

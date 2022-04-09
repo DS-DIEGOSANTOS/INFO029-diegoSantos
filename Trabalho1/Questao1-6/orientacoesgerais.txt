@@ -1,0 +1,8 @@
+
+- compilar 
+    - cd Trabalho1/Questao1-6
+    - gcc -o T1 corretor.c DiegoSantos20212160054.c
+
+	- lembrar de substituir o comando acima pelo novo nome
+- rodar
+	- ./T1

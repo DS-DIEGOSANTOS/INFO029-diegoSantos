@@ -1,4 +1,4 @@
-cd Trabalho1
+cd Trabalho1/Questao8
 
 gcc -o main main.c view/*.c controller/*.c
 
