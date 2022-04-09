@@ -4,7 +4,7 @@
     #include <stdio.h>
     #include <stdlib.h>
     #include <ctype.h>
-    #include <math.h>
+    #include <string.h>
 
     #define MAX_PLAYER 2
     #define MAX_LEN_NAME 255
