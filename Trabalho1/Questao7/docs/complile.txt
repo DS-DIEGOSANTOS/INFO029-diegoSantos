@@ -1,5 +1,5 @@
 cd Trabalho1/Questao7
 
-gcc -o main main.c view/*.c controller/*.c
+gcc -o q7 diegoSantos-20212160054-q7.c view/*.c controller/*.c
 
-./main
+./q7
