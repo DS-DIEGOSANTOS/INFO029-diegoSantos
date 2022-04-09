@@ -24,7 +24,11 @@ void startup(){
             printf("  ");
 
             printf ("%c", 2);
-            Sleep(0.1);
+            #if defined(_WIN32) || defined(_WIN64)
+                Sleep(0.1); 
+            #else
+                usleep(0.1*1000);  
+            #endif
         }
     }
 
