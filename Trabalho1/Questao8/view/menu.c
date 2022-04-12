@@ -30,9 +30,9 @@ void startup(){
 
             printf ("%c", 2);
             #if defined(_WIN32) || defined(_WIN64)
-                Sleep(0.1); 
+                Sleep(0.5); 
             #else
-                usleep(0.1*1000);  
+                usleep(0.5*1000);  
             #endif
         }
     }

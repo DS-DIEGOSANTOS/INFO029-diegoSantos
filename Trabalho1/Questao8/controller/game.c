@@ -43,10 +43,11 @@ playerCoordinate verificationBoard(int gamester, char coordinate[]){
     }
     x--;
 
-    if(x >= MAX_DIMENSIONS && x<0){
+    if(x<0 || x>MAX_DIMENSIONS){
         Player.Validation = 0;
         return Player;;
     }else if(!isempty(y,x,gamester)){
+        printf("c%d\n", x);
         Player.Validation = 0;
         return Player;
     }else{
@@ -244,7 +245,7 @@ int attackValidation(int gamester, char coordinate[]){
     }
     x--;
 
-    if(x >= MAX_DIMENSIONS && x<0){
+    if( x<0  || x> MAX_DIMENSIONS){
         return 0;
     }else if(!attack(y, x,gamester)){
         return 0; 
