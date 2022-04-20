@@ -166,7 +166,7 @@ int q4(char *strTexto, char *strBusca,int *posicoes){
 
         for(int j=0; j< strlen(strBusca) && verificacao;j++){
             
-            if(strTexto[i] <0){
+            if(strTexto[i] ==-61){
             acentuacao ++;
             }
 
