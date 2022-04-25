@@ -1,9 +1,14 @@
 #include "DiegoSantos20212160054.h"
 
+int validaSomenteNumero(char c){
+
+    if(isalpha(c) || ispunct(c)) return 0;
+    return 1;
+}
+
 int q1(char data[]){
    
-    Data Data = quebraData(data);
-    
+    DataQuebrada Data = quebraData(data);
     if(Data.valido==0){
       return Data.valido; 
     }else if(isValidoDiaMesAno(Data)){
@@ -14,9 +19,8 @@ int q1(char data[]){
    return Data.valido;
 }
 
-Data quebraData(char data[]){
-
-    Data Data;
+DataQuebrada quebraData(char data[]){
+    DataQuebrada Data;
     char dia[3];
     char mes[3];
     char ano[5];
@@ -28,7 +32,7 @@ Data quebraData(char data[]){
 
     if(aux <=2){
         dia[i] = '\0';
-        Data.Dia= atoi(dia);
+        Data.iDia= atoi(dia);
     }else{
         Data.valido = 0;
         return Data;
@@ -42,7 +46,7 @@ Data quebraData(char data[]){
 
     if(aux>=1 && aux<=5){
         mes[i] = '\0';
-        Data.Mes= atoi(mes);
+        Data.iMes= atoi(mes);
     }else{
         Data.valido = 0;
         return Data;
@@ -57,7 +61,7 @@ Data quebraData(char data[]){
 
     if(aux >= 3 && aux<=10){
         ano[i] = '\0';
-        Data.Ano= atoi(ano);
+        Data.iAno= atoi(ano);
     }else{
         Data.valido = 0;
         return Data;
@@ -66,12 +70,12 @@ Data quebraData(char data[]){
     return Data;
 }
 
-int isValidoDiaMesAno(Data data){
+int isValidoDiaMesAno(DataQuebrada data){
    
-    if(data.Ano < 0) return 0;
-    else if(data.Mes <= 0 || data.Mes > 12 ) return 0;
-    else if(data.Dia <= 0 || data.Dia > 31) return 0;
-    else if(!isValidoDia( data.Dia, data.Mes, data.Ano)) return 0;
+    if(data.iAno < 0) return 0;
+    else if(data.iMes <= 0 || data.iMes > 12 ) return 0;
+    else if(data.iDia <= 0 || data.iDia > 31) return 0;
+    else if(!isValidoDia( data.iDia, data.iMes, data.iAno)) return 0;
     else return 1;
 }
 
@@ -107,9 +111,9 @@ int isValidoDia(int dia, int mes, int ano){
 
 }
 
-diaMesAno q2(char dataInicial[],char dataFinal[]){
+DiasMesesAnos q2(char dataInicial[],char dataFinal[]){
 
-    diaMesAno dma;
+    DiasMesesAnos dma;
  
     if(!q1(dataInicial)){
         dma.retorno = 2;      
@@ -117,26 +121,68 @@ diaMesAno q2(char dataInicial[],char dataFinal[]){
         dma.retorno = 3;       
     }else{
 
-        Data dInicial = quebraData(dataInicial);
-        Data dFinal = quebraData(dataFinal);
+        DataQuebrada dInicial = quebraData(dataInicial);
+        DataQuebrada dFinal = quebraData(dataFinal);
 
-        if(dInicial.Ano > dFinal.Ano){
+
+
+        if(dInicial.iAno > dFinal.iAno){
             dma.retorno = 4;      
-        }else if(dInicial.Ano >= dFinal.Ano && dInicial.Mes > dFinal.Mes ){
+        }else if(dInicial.iAno >= dFinal.iAno && dInicial.iMes > dFinal.iMes ){
             dma.retorno = 4;
-        }else if(dInicial.Ano >= dFinal.Ano && dInicial.Mes >= dFinal.Mes &&  dInicial.Dia > dFinal.Dia ){
+        }else if(dInicial.iAno >= dFinal.iAno && dInicial.iMes >= dFinal.iMes &&  dInicial.iDia > dFinal.iDia ){
             dma.retorno = 4;
         }else{
-            dma.Qano = dFinal.Ano - dInicial.Ano;
-            dma.Qmes = dFinal.Mes - dInicial.Mes;
-            dma.Qdia = dFinal.Dia - dInicial.Dia;
-            dma.retorno = 1;                 
+            dma.qtdAnos = dFinal.iAno - dInicial.iAno;
+            dma.qtdMeses = dFinal.iMes - dInicial.iMes;
+            dma.qtdDias = dFinal.iDia - dInicial.iDia;
+            dma.retorno = 1;         
+
+            if (dma.qtdMeses < 0){
+                dma.qtdAnos--;
+                dma.qtdMeses += 12;
+            }         
+
+            if (dma.qtdDias < 0){
+            if(dma.qtdMeses == 0){
+                dma.qtdAnos--;
+                dma.qtdMeses = 11;
+            }else
+                dma.qtdMeses--;
+            dma.qtdDias = qtdDeDiaDeuMmes(dFinal.iMes, dFinal.iAno) - dInicial.iDia + dFinal.iDia;
+        }      
         }
     }
     
     return dma;
 
 } 
+
+int qtdDeDiaDeuMmes(int mes,int ano){
+    mes--;
+    int isLeapYear;
+
+    if(ano%400 == 0 || (ano%4 == 0 && ano%100 != 0)) isLeapYear = 1;
+    else isLeapYear = 0;
+
+    if(
+        mes == 1 || 
+        mes == 3 ||
+        mes == 5 || 
+        mes == 7 ||
+        mes == 8 || 
+        mes == 10||
+        mes == 12
+    ){
+        return 31;      
+    }else if(mes == 2 && isLeapYear ){
+        return 29;          
+    }else if(mes == 2 && !isLeapYear){
+        return 28;
+    }else{
+         return 30;
+    }
+}
 
 
 int q3(char *texto, char caracter , int isCaseSensitive){
@@ -158,29 +204,33 @@ int q3(char *texto, char caracter , int isCaseSensitive){
 
 int q4(char *strTexto, char *strBusca,int *posicoes){
 
-    int posicao = 0, verificacao, acentuacao =0;
+    int posicao = 0, verificacao, acentuacao =0, aux=0;
+
     
     for(int i = 0; i< strlen(strTexto) ; i++){
         
         verificacao = 1;
 
-        for(int j=0; j< strlen(strBusca) && verificacao;j++){
-            
-            if(strTexto[i] ==-61){
+        if(strTexto[i] ==-61){
             acentuacao ++;
-            }
-
-            if(strTexto[i+j] != strBusca[j]){
-                verificacao = 0;
-            }
         }
 
-        if(verificacao){
-            posicoes[posicao] = i- acentuacao +1;
-            posicao++;
-            posicoes[posicao] = i+strlen(strBusca) - acentuacao ;
-            posicao++;
-           
+        if(strTexto[i] == strBusca[0]){
+            for(int j = 1 ; strBusca[j] !='\0' && verificacao; j++ ){
+
+                if(strTexto[i+j] != strBusca[j]){
+                    verificacao =0;
+                }
+            }
+
+
+            if(verificacao){
+                posicoes[posicao] = i+1-acentuacao;
+                posicao++;
+                posicoes[posicao] = i+strlen(strBusca)-acentuacao;
+                posicao++;
+                i += strlen(strBusca) -1;
+            }
         }
 
     }
@@ -206,22 +256,22 @@ int q6(int numerobase, int numerobusca){
     int restoDaDivisao,aux =1, qtdDeOcorrencia = 0;
     int digito = qtdDeDigitos(numerobusca);
     
-    for(int i = 1; i <= digito ; i++){
+    for(int i = 0; i < digito ; i++){
         aux*=10;
     }
-    
-    numerobase = q5(numerobase);
-    numerobusca = q5(numerobusca);
+   
 
     while(numerobase != 0){
 
-        restoDaDivisao = numerobase % aux;
 
-        if(restoDaDivisao == numerobusca){
+        if(numerobase % aux == numerobusca){
             qtdDeOcorrencia++;
+            numerobase/=aux;
+        }else{
+            numerobase/=10;
         }
 
-        numerobase /=aux;
+        
 
     }    
 
@@ -229,17 +279,13 @@ int q6(int numerobase, int numerobusca){
 }
 
 int qtdDeDigitos(int numero){
-    int digitos = 0; 
+    int qtdDigito = 0;
 
-    if(numero < 10){
-        digitos = 1;
-        return digitos;
-    }else{   
-        while(numero != 0){    
-            digitos++;
-            numero /=10;    
-        }   
-        return  digitos;
+    while(numero > 0){
+        qtdDigito++;
+        numero /= 10;
+        
     }
+    return qtdDigito;
 
 }

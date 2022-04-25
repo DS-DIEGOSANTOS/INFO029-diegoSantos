@@ -27,35 +27,37 @@
     #include <ctype.h>
     #include <string.h>
 
-    typedef struct Data{
-        int Dia;
-        int Mes;
-        int Ano;
-        int valido; // 0 se inválido, e 1 se válido 
+typedef struct DQ{
+    int iDia;
+    int iMes;
+    int iAno;
+    int valido; // 0 se inválido, e 1 se válido 
 
-    } Data;
+}DataQuebrada;
 
+typedef struct Qtd{
+    int qtdDias;
+    int qtdMeses;
+    int qtdAnos;
+    int retorno;
 
-    typedef struct qtd{
-        int Qdia;
-        int Qmes;
-        int Qano;
-        int retorno;
-
-    } diaMesAno;
+}DiasMesesAnos;
 
 
     int q1(char Data[]); //verifica se a data e valida
-    Data quebraData(char data[]); //verifica e recupera o dia , mes e ano
-    int isValidoDiaMesAno(Data data);//verifica se o dia , mes e ano sao valido
+    DataQuebrada quebraData(char data[]); //verifica e recupera o dia , mes e ano
+    int isValidoDiaMesAno(DataQuebrada data);//verifica se o dia , mes e ano sao valido
     int isValidoDia(int dia, int mes, int ano);// valida o dia correspondente ao mes e ano 
+    int validaSomenteNumero(char c);
   
-    diaMesAno q2(char dataInicial[],char dataFinal[]);
+    DiasMesesAnos q2(char dataInicial[],char dataFinal[]);
+    int qtdDeDiaDeuMmes(int mes,int ano);
     int q3(char *texto, char caracter , int isCaseSensitive);
     int q4(char *strTexto, char *strBusca, int posicoes[30]);
     int q5(int num);
     int q6(int numerobase, int numerobusca);
     int qtdDeDigitos(int numero);
+
         
 
 
