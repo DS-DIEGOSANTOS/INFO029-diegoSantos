@@ -209,8 +209,8 @@ int q4(char *strTexto, char *strBusca,int *posicoes){
     char strTextoCopia[strlen(strTexto)];
     char strBuscaCopia[strlen(strBusca)];
     
-    removeAcentuação(strTexto ,strTextoCopia);
-    removeAcentuação(strBusca ,strBuscaCopia);
+    removeAcentuacao(strTexto ,strTextoCopia);
+    removeAcentuacao(strBusca ,strBuscaCopia);
     
     for(int i = 0; i< strlen(strTextoCopia) ; i++){
         
@@ -292,7 +292,7 @@ int qtdDeDigitos(int numero){
 
 }
 
-void removeAcentuação(char strTexto[] , char strTextoCopia[]){
+void removeAcentuacao(char strTexto[] , char strTextoCopia[]){
      int aux = 0;
     for(int i = 0; i< strlen(strTexto) ; i++){
         if(strTexto[i] !=-61){
