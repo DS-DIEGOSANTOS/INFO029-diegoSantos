@@ -205,40 +205,33 @@ int q3(char *texto, char caracter , int isCaseSensitive){
 int q4(char *strTexto, char *strBusca,int *posicoes){
 
     int posicao = 0, verificacao, acentuacao =0, aux=0;
-
     
-    for(int i = 0; i< strlen(strTexto) ; i++){
+    char strTextoCopia[strlen(strTexto)];
+    char strBuscaCopia[strlen(strBusca)];
+    
+    removeAcentuação(strTexto ,strTextoCopia);
+    removeAcentuação(strBusca ,strBuscaCopia);
+    
+    for(int i = 0; i< strlen(strTextoCopia) ; i++){
         
         verificacao = 1;
 
-        if(strTexto[i] ==-61){
-            acentuacao ++;
-        }
-
-        if(strTexto[i] == strBusca[0]){
+        if(strTextoCopia[i] == strBuscaCopia[0]){
             
-            if(strBusca[0] ==-61){
-              acentuacao ++;
-            }
-            
-            for(int j = 1 ; strBusca[j] !='\0' && verificacao; j++ ){
+            for(int j = 1 ; strBuscaCopia[j] !='\0' && verificacao; j++ ){
                 
-                if(strBusca[j] ==-61){
-                    acentuacao ++;
-                }
-                
-                if(strTexto[i+j] != strBusca[j]){
+                if(strTextoCopia[i+j] != strBuscaCopia[j]){
                     verificacao =0;
                 }
             }
 
 
             if(verificacao){
-                posicoes[posicao] = i+1-acentuacao;
+                posicoes[posicao] = i+1;
                 posicao++;
-                posicoes[posicao] = i+strlen(strBusca)-acentuacao;
+                posicoes[posicao] = i+strlen(strBuscaCopia);
                 posicao++;
-                i += strlen(strBusca) -1;
+                i += strlen(strBuscaCopia) -1;
             }
         }
 
@@ -297,4 +290,14 @@ int qtdDeDigitos(int numero){
     }
     return qtdDigito;
 
+}
+
+void removeAcentuação(char strTexto[] , char strTextoCopia[]){
+     int aux = 0;
+    for(int i = 0; i< strlen(strTexto) ; i++){
+        if(strTexto[i] !=-61){
+            strTextoCopia[aux] = strTexto[i];
+            aux++;
+        }
+     }
 }
