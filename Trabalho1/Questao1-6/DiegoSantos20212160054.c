@@ -216,8 +216,17 @@ int q4(char *strTexto, char *strBusca,int *posicoes){
         }
 
         if(strTexto[i] == strBusca[0]){
+            
+            if(strBusca[0] ==-61){
+              acentuacao ++;
+            }
+            
             for(int j = 1 ; strBusca[j] !='\0' && verificacao; j++ ){
-
+                
+                if(strBusca[j] ==-61){
+                    acentuacao ++;
+                }
+                
                 if(strTexto[i+j] != strBusca[j]){
                     verificacao =0;
                 }
