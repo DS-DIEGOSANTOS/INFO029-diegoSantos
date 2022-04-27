@@ -205,33 +205,31 @@ int q3(char *texto, char caracter , int isCaseSensitive){
 int q4(char *strTexto, char *strBusca,int *posicoes){
 
     int posicao = 0, verificacao, acentuacao =0, aux=0;
+
     
-    char strTextoCopia[strlen(strTexto)];
-    char strBuscaCopia[strlen(strBusca)];
-    
-    removeAcentuacao(strTexto ,strTextoCopia);
-    removeAcentuacao(strBusca ,strBuscaCopia);
-    
-    for(int i = 0; i< strlen(strTextoCopia) ; i++){
+    for(int i = 0; i< strlen(strTexto) ; i++){
         
         verificacao = 1;
 
-        if(strTextoCopia[i] == strBuscaCopia[0]){
-            
-            for(int j = 1 ; strBuscaCopia[j] !='\0' && verificacao; j++ ){
-                
-                if(strTextoCopia[i+j] != strBuscaCopia[j]){
+        if(strTexto[i] ==-61){
+            acentuacao ++;
+        }
+
+        if(strTexto[i] == strBusca[0]){
+            for(int j = 1 ; strBusca[j] !='\0' && verificacao; j++ ){
+
+                if(strTexto[i+j] != strBusca[j]){
                     verificacao =0;
                 }
             }
 
 
             if(verificacao){
-                posicoes[posicao] = i+1;
+                posicoes[posicao] = i+1-acentuacao;
                 posicao++;
-                posicoes[posicao] = i+strlen(strBuscaCopia);
+                posicoes[posicao] = i+strlen(strBusca)-acentuacao;
                 posicao++;
-                i += strlen(strBuscaCopia) -1;
+                i += strlen(strBusca) -1;
             }
         }
 
@@ -290,14 +288,4 @@ int qtdDeDigitos(int numero){
     }
     return qtdDigito;
 
-}
-
-void removeAcentuacao(char strTexto[] , char strTextoCopia[]){
-     int aux = 0;
-    for(int i = 0; i< strlen(strTexto) ; i++){
-        if(strTexto[i] !=-61){
-            strTextoCopia[aux] = strTexto[i];
-            aux++;
-        }
-     }
 }
