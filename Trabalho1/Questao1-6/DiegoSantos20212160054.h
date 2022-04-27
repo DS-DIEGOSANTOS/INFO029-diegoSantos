@@ -57,8 +57,5 @@ typedef struct Qtd{
     int q5(int num);
     int q6(int numerobase, int numerobusca);
     int qtdDeDigitos(int numero);
-    void removeAcentuacao(char strTexto[] , char strTextoCopia[]);
-        
-
 
 #endif
