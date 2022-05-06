@@ -58,7 +58,4 @@ typedef struct Qtd{
     int q6(int numerobase, int numerobusca);
     int qtdDeDigitos(int numero);
 
-        
-
-
 #endif
