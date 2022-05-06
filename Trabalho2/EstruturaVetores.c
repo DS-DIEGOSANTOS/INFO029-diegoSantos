@@ -64,7 +64,7 @@ int inserirNumeroEmEstrutura(int posicao, int valor){
         // testar se existe a estrutura auxiliar
         if (existiEstrutura(posicao)){
            
-            if (existiEspaco(vetorPrincipal[posicao])){
+            if (existiEspaco(posicao)){
                 //insere
                 lst_insercaoDeElementos(vetorPrincipal[posicao], valor);
                 retorno = SUCESSO;
@@ -461,9 +461,11 @@ int existiEstrutura(int posicao){return vetorPrincipal[posicao]!= NULL;}
 
 int temConteudo(Lista *l){return l->inicializada == 1;};
 
-int existiEspaco(Lista* l){
+int existiEspaco(int posicao){
     int retorno = 0;
-
+  
+    Lista* l = vetorPrincipal[posicao];
+  
     while(l != NULL){
         if(l->inicializada == 0){
             retorno =1;

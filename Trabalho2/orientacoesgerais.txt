@@ -1,8 +1,10 @@
 
-- compilar 
+- compilar texte
     - cd Trabalho2
     - gcc -o T2 EstruturaVetores.c mainTeste.c
-
-	- lembrar de substituir o comando acima pelo novo nome
+- compilar main
+    - cd Trabalho2
+    - gcc -o T2 EstruturaVetores.c main.c
+  
 - rodar
 	- ./T2
