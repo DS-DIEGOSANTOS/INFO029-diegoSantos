@@ -12,8 +12,12 @@
 #endif
 
 void menu();
-void MenuCriarEstruturaAuxiliar();
+void menuCriarEstruturaAuxiliar();
 void menuInserirValorNaEstrutura();
+void menuExcluirNumeroDoFinaldaEstrutura();
+void menuExcluirNumeroEspecificoDeEstrutura();
+void menuDadosEstruturaAuxiliar();
+
 
 int main(){
     inicializar();
@@ -29,9 +33,12 @@ void menu(){
         printf("        Trabalho 2         ");
         printf("\n---------------------------\n");
 
-        printf("1 - Criar estrutura auxiliar");
-        printf("2 - inserir o valor na estrutura"); 
-        printf("escolha uma opcao:");
+        printf("\n1 - Criar estrutura auxiliar");
+        printf("\n2 - Inserir o valor na estrutura"); 
+        printf("\n3 - Excluir numero final da estrutura");
+        printf("\n4 - Excluir numero especifico da estrutura");
+        printf("\n5 - mostra dados da estrutura auxiliar");
+        printf("\nescolha uma opcao:");
         scanf("%d",& op);
         getchar();
 
@@ -39,7 +46,7 @@ void menu(){
     }while(op<1 || op>2);
 }
 
-void MenuCriarEstruturaAuxiliar(){
+void menuCriarEstruturaAuxiliar(){
     int posicao, tamanho, validacao;
 
     printf("Digite uma posicao:");
@@ -117,6 +124,9 @@ void menuInserirValorNaEstrutura(){
             }else{
                 printf("Estrutura auxiliar criada como sucesso!!\n\naperte qualquer tecla para continua...");
             }
+          
+        }else{
+          printf("voce sera encaminhado para o menu principal!\n\naperte qualquer tecla para continua...");
         }
     }
 
@@ -124,4 +134,43 @@ void menuInserirValorNaEstrutura(){
     system(CLEAR);
     menu();
 
+}
+
+void menuExcluirNumeroDoFinaldaEstrutura(){
+ 
+  int posicao,validacao;
+  
+  printf("Digite uma posicao:");
+  scanf("%d", & posicao);
+  getchar();
+
+  validao = excluirNumeroDoFinaldaEstrutura(posicao);
+
+}
+
+void menuExcluirNumeroEspecificoDeEstrutura(){
+    int posicao, valor, validacao;
+
+    printf("Digite uma posicao:");
+    scanf("%d", & posicao);
+    getchar();
+
+    printf("Digite um valor:");
+    scanf("%d", & valor);
+    getchar();
+
+    validacao = excluirNumeroEspecificoDeEstrutura(posicao,valor);
+
+}
+
+void menuDadosEstruturaAuxiliar(){
+  int posicao, tamanho;
+  
+  printf("Digite uma posicao:");
+  scanf("%d", & posicao);
+  getchar();
+  
+  tamanho = getQuantidadeElementosEstruturaAuxiliar(posicao);
+
+  int vetor[tamanho];
 }

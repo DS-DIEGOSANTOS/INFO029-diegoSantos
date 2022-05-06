@@ -43,7 +43,7 @@ No* no_insere(No* l , int i);
 void destruirListaEncadeadaComCabecote(No **inicio);
 void lst_libera(Lista **l);
 
-int existiEstrutura(Lista* l);
+int existiEstrutura(int posicao);
 int existiEspaco(Lista* l);
 int temConteudo(Lista* l);
 Lista* lst_cria(Lista* l);

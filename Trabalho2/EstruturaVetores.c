@@ -26,7 +26,7 @@ int criarEstruturaAuxiliar(int posicao, int tamanho){
         retorno = POSICAO_INVALIDA;
     }else if(tamanho < 1){
         retorno = TAMANHO_INVALIDO;
-    }else if(existiEstrutura(vetorPrincipal[posicao])){         
+    }else if(existiEstrutura(posicao)){         
         retorno = JA_TEM_ESTRUTURA_AUXILIAR; 
     }else{
 
@@ -62,7 +62,7 @@ int inserirNumeroEmEstrutura(int posicao, int valor){
           retorno = POSICAO_INVALIDA;
     }else{
         // testar se existe a estrutura auxiliar
-        if (existiEstrutura(vetorPrincipal[posicao])){
+        if (existiEstrutura(posicao)){
            
             if (existiEspaco(vetorPrincipal[posicao])){
                 //insere
@@ -96,7 +96,7 @@ int excluirNumeroDoFinaldaEstrutura(int posicao){
 
     if(posicao<0 || posicao>=TAM){
         retorno = POSICAO_INVALIDA;
-    }else if(existiEstrutura(vetorPrincipal[posicao])){
+    }else if(existiEstrutura(posicao)){
         
         if (!temConteudo(vetorPrincipal[posicao])){
             retorno = ESTRUTURA_AUXILIAR_VAZIA;
@@ -144,7 +144,7 @@ int excluirNumeroEspecificoDeEstrutura(int posicao, int valor){
 
     if(posicao<0 || posicao>=TAM){
         retorno = POSICAO_INVALIDA;
-    }else if(!existiEstrutura(vetorPrincipal[posicao])){
+    }else if(!existiEstrutura(posicao)){
         retorno = SEM_ESTRUTURA_AUXILIAR;
     }else{
          if (!temConteudo(vetorPrincipal[posicao])){
@@ -178,7 +178,7 @@ int getDadosEstruturaAuxiliar(int posicao, int vetorAux[]){
 
     if(posicao<0 || posicao>=TAM){
         retorno = POSICAO_INVALIDA;
-    }else if(!existiEstrutura(vetorPrincipal[posicao])){
+    }else if(!existiEstrutura(posicao)){
         retorno = SEM_ESTRUTURA_AUXILIAR;
     }else{
         Lista * aux = vetorPrincipal[posicao];
@@ -231,7 +231,7 @@ int getDadosDeTodasEstruturasAuxiliares(int vetorAux[]){
     for(int i = 0 ; i< TAM; i++){
         Lista* aux = vetorPrincipal[i];
 
-        if(existiEstrutura(aux)){
+        if(existiEstrutura(i)){
             while(aux !=NULL){
                 if(aux->inicializada){
                     vetorAux[incremento] = aux->conteudo;
@@ -293,7 +293,7 @@ int modificarTamanhoEstruturaAuxiliar(int posicao, int novoTamanho){
         retorno = POSICAO_INVALIDA;
     }else if(novoTamanho<1){
         retorno = NOVO_TAMANHO_INVALIDO;
-    }else if(!existiEstrutura(vetorPrincipal[posicao])){
+    }else if(!existiEstrutura(posicao)){
         retorno = SEM_ESTRUTURA_AUXILIAR;
     }else{
 
@@ -345,7 +345,7 @@ int getQuantidadeElementosEstruturaAuxiliar(int posicao){
 
     if(posicao<0 || posicao>TAM){
         retorno = POSICAO_INVALIDA;
-    }else if(!existiEstrutura(vetorPrincipal[posicao])){
+    }else if(!existiEstrutura(posicao)){
         retorno =SEM_ESTRUTURA_AUXILIAR;
     }else{
         Lista* l = vetorPrincipal[posicao];
@@ -457,7 +457,7 @@ void lst_libera(Lista** l){
     
 }
 
-int existiEstrutura(Lista* l){return l!= NULL;}
+int existiEstrutura(int posicao){return vetorPrincipal[posicao]!= NULL;}
 
 int temConteudo(Lista *l){return l->inicializada == 1;};
 
