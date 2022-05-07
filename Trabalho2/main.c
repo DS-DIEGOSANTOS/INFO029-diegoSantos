@@ -71,7 +71,7 @@ void menu(){
     case 8: menuDadosDeTodasEstruturasAuxiliares(1);break;
     case 9: menuInformacaoDaEstrutura();break;
     case 10: menuModificarTamanhoEstruturaAuxiliar();break;
-    case 11:  sair(); break;
+    case 11: sair(); break;
     }
 }
 
