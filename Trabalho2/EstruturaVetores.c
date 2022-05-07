@@ -5,7 +5,7 @@
 
 #include "EstruturaVetores.h"
 
-Lista *vetorPrincipal[TAM];
+Elemento *vetorPrincipal[TAM];
 
 /*
 Objetivo: criar estrutura auxiliar na posição 'posicao'.
@@ -101,8 +101,8 @@ int excluirNumeroDoFinaldaEstrutura(int posicao){
         if (!temConteudo(vetorPrincipal[posicao])){
             retorno = ESTRUTURA_AUXILIAR_VAZIA;
         }else{
-            Lista* l = vetorPrincipal[posicao];
-            Lista* x;
+            Elemento* l = vetorPrincipal[posicao];
+            Elemento* x;
             while (l != NULL){  
                 x = l ->prox;              
                 if(l->prox ==NULL || x->inicializada == 0){
@@ -181,7 +181,7 @@ int getDadosEstruturaAuxiliar(int posicao, int vetorAux[]){
     }else if(!existiEstrutura(posicao)){
         retorno = SEM_ESTRUTURA_AUXILIAR;
     }else{
-        Lista * aux = vetorPrincipal[posicao];
+        Elemento * aux = vetorPrincipal[posicao];
 
         while(aux !=NULL){
             if(aux->inicializada == 1){
@@ -229,7 +229,7 @@ int getDadosDeTodasEstruturasAuxiliares(int vetorAux[]){
     int retorno = 0,incremento = 0;
 
     for(int i = 0 ; i< TAM; i++){
-        Lista* aux = vetorPrincipal[i];
+        Elemento* aux = vetorPrincipal[i];
 
         if(existiEstrutura(i)){
             while(aux !=NULL){
@@ -297,7 +297,7 @@ int modificarTamanhoEstruturaAuxiliar(int posicao, int novoTamanho){
         retorno = SEM_ESTRUTURA_AUXILIAR;
     }else{
 
-        Lista * aux = vetorPrincipal[posicao];
+        Elemento * aux = vetorPrincipal[posicao];
         vetorPrincipal[posicao] = NULL;
 
         for(int i = 0; i<novoTamanho ;i++){
@@ -348,7 +348,7 @@ int getQuantidadeElementosEstruturaAuxiliar(int posicao){
     }else if(!existiEstrutura(posicao)){
         retorno =SEM_ESTRUTURA_AUXILIAR;
     }else{
-        Lista* l = vetorPrincipal[posicao];
+        Elemento* l = vetorPrincipal[posicao];
 
         while(l!=NULL){
 
@@ -447,10 +447,10 @@ void finalizar(){
     }
 }
 
-void lst_libera(Lista** l){
-    Lista* p = *l;
+void lst_libera(Elemento** l){
+    Elemento* p = *l;
     while (p!= NULL){
-        Lista* t = p ->prox;
+        Elemento* t = p ->prox;
         free(p);
         p =t;
     }
@@ -459,12 +459,12 @@ void lst_libera(Lista** l){
 
 int existiEstrutura(int posicao){return vetorPrincipal[posicao]!= NULL;}
 
-int temConteudo(Lista *l){return l->inicializada == 1;};
+int temConteudo(Elemento *l){return l->inicializada == 1;};
 
 int existiEspaco(int posicao){
     int retorno = 0;
   
-    Lista* l = vetorPrincipal[posicao];
+    Elemento* l = vetorPrincipal[posicao];
   
     while(l != NULL){
         if(l->inicializada == 0){
@@ -476,14 +476,14 @@ int existiEspaco(int posicao){
     return retorno;
 }
 
-Lista* lst_cria(Lista *l){
-    Lista* novo = (Lista*) malloc(sizeof(Lista));
+Elemento* lst_cria(Elemento *l){
+    Elemento* novo = (Elemento*) malloc(sizeof(Elemento));
     novo ->inicializada = 0;
     novo ->prox = l;
     return novo;
 }
 
-void lst_insercaoDeElementos(Lista *l, int numero){
+void lst_insercaoDeElementos(Elemento *l, int numero){
     
     while(l != NULL){
         if(l->inicializada == 0){
@@ -496,7 +496,7 @@ void lst_insercaoDeElementos(Lista *l, int numero){
     }
 }
 
-void lst_retiraFinalElemento(Lista* l){
+void lst_retiraFinalElemento(Elemento* l){
     while (l != NULL){
         printf("a");
         if((l->inicializada == 1 && l->prox->inicializada ==0) || (l->prox ==NULL)){
@@ -507,9 +507,9 @@ void lst_retiraFinalElemento(Lista* l){
     }
 }
 
-int existeNumero(Lista* l, int v){
-    Lista* ant = NULL; 
-    Lista* p = l;
+int existeNumero(Elemento* l, int v){
+    Elemento* ant = NULL; 
+    Elemento* p = l;
 
 
     while(p!= NULL && p ->conteudo != v){
@@ -521,9 +521,9 @@ int existeNumero(Lista* l, int v){
     else return 1;
 }
 
-Lista* lst_retira(Lista* l,int v){
-    Lista* ant = NULL; 
-    Lista* p = l;
+Elemento* lst_retira(Elemento* l,int v){
+    Elemento* ant = NULL; 
+    Elemento* p = l;
 
 
     while(p!= NULL && p ->conteudo != v){
@@ -543,11 +543,11 @@ Lista* lst_retira(Lista* l,int v){
     return l;
 }
 
-void realocamento(Lista* l){
+void realocamento(Elemento* l){
     
-    Lista* ant = NULL;
-    Lista* p = l;
-    Lista* novo = (Lista*) malloc(sizeof(Lista));
+    Elemento* ant = NULL;
+    Elemento* p = l;
+    Elemento* novo = (Elemento*) malloc(sizeof(Elemento));
     
 
     while(p != NULL){
@@ -575,7 +575,7 @@ void ordenar(int vetor[], size_t tamanho) {
 
 int getTamanhoDaEstruturaAuxilia(int posicao){
     int quantidade = 0;
-    Lista * l = vetorPrincipal[posicao];
+    Elemento * l = vetorPrincipal[posicao];
 
     while(l!=NULL){
         quantidade ++;

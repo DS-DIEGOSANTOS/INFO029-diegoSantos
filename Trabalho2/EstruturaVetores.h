@@ -15,7 +15,7 @@ typedef struct lst {
     int conteudo;
     int inicializada;
     struct lst *prox;
-} Lista;
+} Elemento;
 
 
 typedef struct reg {
@@ -42,18 +42,18 @@ No *montarListaEncadeadaComCabecote();
 void getDadosListaEncadeadaComCabecote(No *inicio, int vetorAux[]);
 No* no_insere(No* l , int i);
 void destruirListaEncadeadaComCabecote(No **inicio);
-void lst_libera(Lista **l);
+void lst_libera(Elemento **l);
 
 int existiEstrutura(int posicao);
 int existiEspaco(int posicao);
-int temConteudo(Lista* l);
-Lista* lst_cria(Lista* l);
-Lista* lst_retira(Lista* l,int v); 
-void lst_insercaoDeElementos(Lista *l, int numero);
-void lst_retiraFinalElemento(Lista* l);
+int temConteudo(Elemento* l);
+Elemento* lst_cria(Elemento* l);
+Elemento* lst_retira(Elemento* l,int v); 
+void lst_insercaoDeElementos(Elemento *l, int numero);
+void lst_retiraFinalElemento(Elemento* l);
 void ordenar(int vetor[], size_t tamanho);
-int existeNumero(Lista* l, int v);
-void realocamento(Lista* l);
+int existeNumero(Elemento* l, int v);
+void realocamento(Elemento* l);
 
 
 
