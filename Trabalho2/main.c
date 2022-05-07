@@ -15,21 +15,25 @@ void menu();
 void menuCriarEstruturaAuxiliar();
 void menuInserirValorNaEstrutura();
 void menuExcluirNumeroDoFinaldaEstrutura();
-//void menuExcluirNumeroEspecificoDeEstrutura();
-//void menuDadosEstruturaAuxiliar();
+void menuExcluirNumeroEspecificoDeEstrutura();
+void menuDadosEstruturaAuxiliar(int ordenado);
+void menuDadosDeTodasEstruturasAuxiliares(int ordenado);
+void menuModificarTamanhoEstruturaAuxiliar();
+void menuInformacaoDaEstrutura();
 void menuVerificacao(int validacao);
-
+void sair();
 
 int main(){
-  inicializar();
-  menu();
-  finalizar();
+
+    inicializar();
+    menu();
+    return 0;
 }
 
 void menu(){
-  int op = 0,posicao = 0, tamanho = 0;
+    int op = 0,posicao = 0, tamanho = 0;
 
-  do{
+    do{
     printf("---------------------------\n");
     printf("        Trabalho 2         ");
     printf("\n---------------------------\n");
@@ -38,48 +42,61 @@ void menu(){
     printf("\n2 - Inserir o valor na estrutura"); 
     printf("\n3 - Excluir numero final da estrutura");
     printf("\n4 - Excluir numero especifico da estrutura");
-    printf("\n5 - mostra dados da estrutura auxiliar");
+    printf("\n5 - Mostra dados da estrutura auxiliar");
+    printf("\n6 - Mostra dados da estrutura auxiliar ordenado");
+    printf("\n7 - Mostra todos os dados das estruturas auxiliares");
+    printf("\n8 - Mostra todos os dados das estruturas auxliares ordenados");
+    printf("\n9 - Mostra quantidade de tamanho e elementos");
+    printf("\n10 - Modificar o tamanho da estrutura auxiliar");
+    printf("\n11 - Sair");
     printf("\n\nescolha uma opcao:");
     scanf("%d",& op);
     getchar();
 
-    if(op<1 || op>4){
-      printf("opcao invalida \n\naperte qualquer tecla para continua...");
-      getchar();
+    if(op<1 || op>11){
+        printf("opcao invalida \n\naperte qualquer tecla para continua...");
+        getchar();
     }
     system(CLEAR);
-  }while(op<1 || op>3);
+    }while(op < 1 || op > 11);
 
-  switch (op){
+    switch (op){
     case 1: menuCriarEstruturaAuxiliar(); break;
     case 2: menuInserirValorNaEstrutura(); break;
     case 3: menuExcluirNumeroDoFinaldaEstrutura(); break;
-    case 4: break;
-  }
+    case 4: menuExcluirNumeroEspecificoDeEstrutura();break;
+    case 5: menuDadosEstruturaAuxiliar(0);break;
+    case 6: menuDadosEstruturaAuxiliar(1);break;
+    case 7: menuDadosDeTodasEstruturasAuxiliares(0);break;
+    case 8: menuDadosDeTodasEstruturasAuxiliares(1);break;
+    case 9: menuInformacaoDaEstrutura();break;
+    case 10: menuModificarTamanhoEstruturaAuxiliar();break;
+    case 11:  sair(); break;
+    }
 }
 
 void menuCriarEstruturaAuxiliar(){
-  int posicao, tamanho, validacao;
+    int posicao, tamanho, validacao;
 
-  printf("Digite uma posicao:");
-  scanf("%d", & posicao);
-  getchar();
+    printf("Digite uma posicao:");
+    scanf("%d", & posicao);
+    getchar();
 
-  printf("Digite um tamanho:");
-  scanf("%d", & tamanho);
-  getchar();
+    printf("Digite um tamanho:");
+    scanf("%d", & tamanho);
+    getchar();
 
-  validacao = criarEstruturaAuxiliar(posicao, tamanho);
+    validacao = criarEstruturaAuxiliar(posicao, tamanho);
 
-  if(validacao == SUCESSO)
+    if(validacao == SUCESSO)
     printf("Estrutura auxiliar criada com sucesso!!\n\naperte qualquer tecla para continua...");
-  else
+    else
     menuVerificacao(validacao);
-  
 
-  getchar();
-  system(CLEAR);
-  menu();
+
+    getchar();
+    system(CLEAR);
+    menu();
 }
 
 void menuInserirValorNaEstrutura(){
@@ -115,22 +132,22 @@ void menuInserirValorNaEstrutura(){
             validacao = criarEstruturaAuxiliar(posicao, tamanho);
 
             if(validacao == SUCESSO){
-              printf("Estrutura auxiliar criada com sucesso!!\n\naperte qualquer tecla para continua...");
-              getchar();
-              validacao = inserirNumeroEmEstrutura(posicao, valor);
+                printf("Estrutura auxiliar criada com sucesso!!\n\naperte qualquer tecla para continua...");
+                getchar();
+                validacao = inserirNumeroEmEstrutura(posicao, valor);
               
-              if(validacao == SUCESSO){
+            if(validacao == SUCESSO){
                 printf("Numero inserido com sucesso!!\n\naperte qualquer tecla para continua...");
-              }else{
+            }else{
                 menuVerificacao(validacao);
-              }
+            }
               
             }else{
-              menuVerificacao(validacao);
+                menuVerificacao(validacao);
             }
           
         }else{
-          printf("voce sera encaminhado para o menu principal!\n\naperte qualquer tecla para continua...");
+            printf("voce sera encaminhado para o menu principal!\n\naperte qualquer tecla para continua...");
         }
     }else{
         menuVerificacao(validacao);
@@ -142,27 +159,27 @@ void menuInserirValorNaEstrutura(){
 }
 
 void menuExcluirNumeroDoFinaldaEstrutura(){
- 
-  int posicao,validacao;
-  
-  printf("Digite uma posicao:");
-  scanf("%d", & posicao);
-  getchar();
 
-  validacao = excluirNumeroDoFinaldaEstrutura(posicao);
+    int posicao,validacao;
 
-  if(validacao == SUCESSO)
+    printf("Digite uma posicao:");
+    scanf("%d", & posicao);
+    getchar();
+
+    validacao = excluirNumeroDoFinaldaEstrutura(posicao);
+
+    if(validacao == SUCESSO)
     printf("Numero excluido com sucesso\n\naperte qualquer tecla para continua...");
-  else
+    else
     menuVerificacao(validacao);
-  
 
-  getchar();
-  system(CLEAR);
-  menu();
+
+    getchar();
+    system(CLEAR);
+    menu();
 }
 
-/*
+
 void menuExcluirNumeroEspecificoDeEstrutura(){
     int posicao, valor, validacao;
 
@@ -175,35 +192,143 @@ void menuExcluirNumeroEspecificoDeEstrutura(){
     getchar();
 
     validacao = excluirNumeroEspecificoDeEstrutura(posicao,valor);
+    
+    if(validacao == SUCESSO)
+    printf("Numero excluido com sucesso\n\naperte qualquer tecla para continua...");
+    else
+    menuVerificacao(validacao);
 
+    getchar();
+    system(CLEAR);
+    menu();
 }
 
-void menuDadosEstruturaAuxiliar(){
-  int posicao, tamanho = 0, validacao = 0;
-  
-  printf("Digite uma posicao:");
-  scanf("%d", & posicao);
-  getchar();
+void menuDadosEstruturaAuxiliar(int ordenado){
+    int posicao, tamanho = 0, validacao = 0;
+    
+    printf("Digite uma posicao:");
+    scanf("%d", & posicao);
+    getchar();
 
-  if(posicao<0 || posicao>TAM){
-    printf("posicao invalida\n\naperte qualquer tecla para continua...");
-  }else if(!existiEstrutura(posicao-1)){
-    printf("Nao existi estrutura\n\naperte qualquer tecla para continua...");
-  }else{
     tamanho = getQuantidadeElementosEstruturaAuxiliar(posicao);
     
-    int vetor[tamanho];
-    validacao = getDadosEstruturaAuxiliar(posicao,vetor);
+    if(tamanho<0){
+        menuVerificacao(tamanho);
+    }else{
 
-    if(validacao == SUCESSO){
-      printf("Dados na posicao %d", posicao);
-      for(int i = 0; i<tamanho;i++){
-        printf("%d ",vetor[tamanho]);
-      }
+        int vetor[tamanho];
+
+        if(ordenado) validacao = getDadosOrdenadosEstruturaAuxiliar(posicao,vetor);
+        else validacao = getDadosEstruturaAuxiliar(posicao,vetor);
+
+        if(validacao == SUCESSO){
+            printf("---------------------------\n");
+            printf("     DADOS DA POSICAO %d ", posicao);
+            printf("\n---------------------------\n");
+           
+            for(int i = 0; i<tamanho;i++){
+                printf("%d ",vetor[i]);
+            }
+
+            printf("\n\naperte qualquer tecla para continua...");
+        }else{
+            menuVerificacao(validacao);
+        }
     }
-  }
+    
+    getchar();
+    system(CLEAR);
+    menu();
 }
-*/
+
+void menuDadosDeTodasEstruturasAuxiliares(int ordenado){
+    
+    int tamanho = 0, aux = 0, validacao;
+
+    for(int i = 0 ; i< TAM; i++){
+        aux =  getQuantidadeElementosEstruturaAuxiliar(i);
+        if(aux>0){
+            tamanho += aux;
+        }
+    }
+
+    if(tamanho<=0){
+        validacao = TODAS_ESTRUTURAS_AUXILIARES_VAZIAS;
+        menuVerificacao(validacao);
+    }else{
+
+        int vetor[tamanho];
+
+        if(ordenado) validacao = getDadosOrdenadosDeTodasEstruturasAuxiliares(vetor);
+        else validacao = getDadosDeTodasEstruturasAuxiliares(vetor);
+
+        if(validacao == SUCESSO){
+            printf("---------------------------\n");
+            printf(" DADOS DE TODAS AS ESTRUTURAS" );
+            printf("\n---------------------------\n");
+
+            for(int i = 0; i<tamanho;i++){
+                printf("%d ",vetor[i]);
+            }
+
+            printf("\n\naperte qualquer tecla para continua...");
+        }else{
+            menuVerificacao(validacao);
+        }
+    }
+
+    getchar();
+    system(CLEAR);
+    menu();
+}
+
+void menuModificarTamanhoEstruturaAuxiliar(){
+    int posicao, tamanho, validacao;
+
+    printf("Digite uma posicao:");
+    scanf("%d", & posicao);
+    getchar();
+
+    printf("Digite um tamanho:");
+    scanf("%d", & tamanho);
+    getchar();
+
+    validacao = modificarTamanhoEstruturaAuxiliar(posicao, tamanho);
+
+    if(validacao == SUCESSO)
+    printf("Estrutura auxiliar atualizada com sucesso!!\n\naperte qualquer tecla para continua...");
+    else
+    menuVerificacao(validacao);
+
+
+    getchar();
+    system(CLEAR);
+    menu();
+}
+
+void menuInformacaoDaEstrutura(){
+    int Tamanho =0, Quantidade = 0, posicao;
+    printf("Digite uma posicao:");
+    scanf("%d", & posicao);
+    getchar();
+
+    Tamanho = getTamanhoDaEstruturaAuxilia(posicao-1);
+    Quantidade = getQuantidadeElementosEstruturaAuxiliar(posicao);
+
+    if(Quantidade >= 0 && Tamanho >= 0){
+        printf("Tamanho da estrutura: %d\n", Tamanho);
+        printf("Quantidade de elementos: %d\n",Quantidade);
+        printf("\n\naperte qualquer tecla para continua...");
+    }else{
+        menuVerificacao(Quantidade);
+    }
+
+    getchar();
+    system(CLEAR);
+    menu();
+
+}
+
 void menuVerificacao(int validacao){
   
   if(validacao == JA_TEM_ESTRUTURA_AUXILIAR){
@@ -219,11 +344,19 @@ void menuVerificacao(int validacao){
   }else if(validacao == TODAS_ESTRUTURAS_AUXILIARES_VAZIAS){
       printf("Todas as estruturas auxiliares estao vazias!!\n\naperte qualquer tecla para continua...");
   }else if(validacao == NOVO_TAMANHO_INVALIDO){
-      printf("Todas as estruturas auxiliares estao vazias!!\n\naperte qualquer tecla para continua...");
+      printf("Novo tamanho invalido!!\n\naperte qualquer tecla para continua...");
   }else if(validacao == NUMERO_INEXISTENTE){
       printf("Numero Inexistente!!\n\naperte qualquer tecla para continua...");
   }else if(validacao == SEM_ESTRUTURA_AUXILIAR){
       printf("Sem estrutura auxiliar!!\n\naperte qualquer tecla para continua...");
   }
   
+}
+
+void sair(){
+    finalizar();
+
+    printf("-----------------------\n");
+    printf("    FIM DO PROGRAMA    \n");
+    printf("-----------------------\n");
 }
