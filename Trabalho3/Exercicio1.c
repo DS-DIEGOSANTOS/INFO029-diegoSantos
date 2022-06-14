@@ -20,7 +20,6 @@ int main(void){
   return 0;
 }
 
-
 double fatorial(int n){
   double fat;
   
